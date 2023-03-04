@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:21:30 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/01 14:27:39 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/04 18:04:31 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,26 @@
 # include "string.h"
 # include "unistd.h"
 
+typedef struct s_ph
+{
+	int 			index;
+	pthread_t		thread;
+	pthread_mutex_t	left;
+	pthread_mutex_t	right;
+	int				time_todie;
+	int				time_toeat;
+	int				time_tosleep;
+	int				nboftimes_toeat;
+}	t_ph;
+
 typedef struct s_var
 {
 	int				*args;
-	pthread_t		*philos;
+	t_ph			*philos;
 	pthread_mutex_t	*forks;
 	int				s;
-	int				i;
-	int				j;
 }	t_var;
+
 
 int		*parsing(int ac, char **av);
 long	ft_atoi(const char *str);
