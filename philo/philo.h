@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:21:30 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/04 18:04:31 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/05 17:01:33 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 typedef struct s_ph
 {
-	int 			index;
+	int				index;
 	pthread_t		thread;
 	pthread_mutex_t	left;
 	pthread_mutex_t	right;
@@ -40,7 +40,6 @@ typedef struct s_var
 	pthread_mutex_t	*forks;
 	int				s;
 }	t_var;
-
 
 int		*parsing(int ac, char **av);
 long	ft_atoi(const char *str);
