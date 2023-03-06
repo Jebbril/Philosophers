@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:51:21 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/06 17:31:43 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/06 18:01:41 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	init_threads(t_var *v)
 				NULL, routine, &v->philos[i]);
 		if (v->s != 0)
 			free_exit(v);
-		usleep(5);
 	}
 	i = -1;
 	while (++i < v->args[0])
