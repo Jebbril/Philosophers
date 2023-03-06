@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:21:30 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/05 17:01:33 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/06 14:44:50 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ typedef struct s_var
 int		*parsing(int ac, char **av);
 long	ft_atoi(const char *str);
 void	free_exit(t_var *v);
+void	*routine(void *arg);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:57:33 by orakib            #+#    #+#             */
-/*   Updated: 2023/02/25 16:58:59 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/06 13:00:43 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	*parsing(int ac, char **av)
 	int	*ret;
 	int	i;
 
-	ret = malloc(sizeof(int) * (ac - 1));
+	ret = malloc(sizeof(int) * ac);
 	if (!ret)
 		exit(EXIT_FAILURE);
 	i = -1;
@@ -62,5 +62,6 @@ int	*parsing(int ac, char **av)
 		}
 		ret[i] = ft_atoi(av[i + 1]);
 	}
+	ret[i] = 0;
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:51:21 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/05 18:08:46 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/06 17:31:43 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ void	make_forks(t_var *v)
 		if (v->s != 0)
 			free_exit(v);
 	}
+}
+
+void	putdown_forks(t_var *v, int i)
+{
+	v->philos[i].left = v->forks[i];
+	if (i < v->args[0] - 1)
+		v->philos[i].right = v->forks[i + 1];
+	else
+		v->philos[i].right = v->forks[0];
 }
 
 void	init_philos(t_var *v)
@@ -44,6 +53,29 @@ void	init_philos(t_var *v)
 			v->philos[i].nboftimes_toeat = v->args[4];
 		else
 			v->philos[i].nboftimes_toeat = -1;
+		putdown_forks(v, i);
+	}
+}
+
+void	init_threads(t_var *v)
+{
+	int	i;
+
+	i = -1;
+	while (++i < v->args[0])
+	{
+		v->s = pthread_create(&v->philos[i].thread,
+				NULL, routine, &v->philos[i]);
+		if (v->s != 0)
+			free_exit(v);
+		usleep(5);
+	}
+	i = -1;
+	while (++i < v->args[0])
+	{
+		v->s = pthread_join(v->philos[i].thread, NULL);
+		if (v->s != 0)
+			free_exit(v);
 	}
 }
 
@@ -58,8 +90,6 @@ int	main(int ac, char **av)
 	v.args = parsing(ac, av);
 	make_forks(&v);
 	init_philos(&v);
-	int i = -1;
-	while (++i < v.args[0])
-		printf("index : %d\t time to die : %d\t time to eat : %d\t time to sleep : %d\t nb of times to eat : %d\n", v.philos[i].index, v.philos[i].time_todie, v.philos[i].time_toeat, v.philos[i].time_tosleep, v.philos[i].nboftimes_toeat);
+	init_threads(&v);
 	free_exit(&v);
 }
