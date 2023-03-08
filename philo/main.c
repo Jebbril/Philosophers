@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:51:21 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/06 18:01:41 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/07 18:11:23 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ void	init_threads(t_var *v)
 int	main(int ac, char **av)
 {
 	t_var	v;
-
+	struct timeval t1, t2;
+	
+	gettimeofday(&t1, NULL);
 	v.forks = NULL;
 	v.philos = NULL;
 	if (ac < 5 || ac > 6)
@@ -90,5 +92,7 @@ int	main(int ac, char **av)
 	make_forks(&v);
 	init_philos(&v);
 	init_threads(&v);
+	gettimeofday(&t2, NULL);
+	printf("time passed : %ld.%d\n", t2.tv_sec - t1.tv_sec, t2.tv_usec - t1.tv_usec);
 	free_exit(&v);
 }
