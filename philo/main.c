@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:51:21 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/07 18:11:23 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/09 15:56:00 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	putdown_forks(t_var *v, int i)
 		v->philos[i].right = v->forks[0];
 }
 
-void	init_philos(t_var *v)
+void	init_philos(t_var *v, struct timeval *t1)
 {
 	int	i;
 
@@ -53,6 +53,7 @@ void	init_philos(t_var *v)
 			v->philos[i].nboftimes_toeat = v->args[4];
 		else
 			v->philos[i].nboftimes_toeat = -1;
+		v->philos[i].start_time = *t1;
 		putdown_forks(v, i);
 	}
 }
@@ -80,19 +81,18 @@ void	init_threads(t_var *v)
 
 int	main(int ac, char **av)
 {
-	t_var	v;
-	struct timeval t1, t2;
-	
+	t_var			v;
+	struct timeval	t1;
+
 	gettimeofday(&t1, NULL);
+	printf("%ld.%d\n", t1.tv_sec, t1.tv_usec);
 	v.forks = NULL;
 	v.philos = NULL;
 	if (ac < 5 || ac > 6)
 		exit(EXIT_FAILURE);
 	v.args = parsing(ac, av);
 	make_forks(&v);
-	init_philos(&v);
+	init_philos(&v, &t1);
 	init_threads(&v);
-	gettimeofday(&t2, NULL);
-	printf("time passed : %ld.%d\n", t2.tv_sec - t1.tv_sec, t2.tv_usec - t1.tv_usec);
 	free_exit(&v);
 }
