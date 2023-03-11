@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:21:30 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/09 18:19:52 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/11 18:51:37 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_ph
 	int				time_toeat;
 	int				time_tosleep;
 	int				nboftimes_toeat;
+	long			start_time;
 }	t_ph;
 
 typedef struct s_var
@@ -38,6 +39,7 @@ typedef struct s_var
 	int				*args;
 	t_ph			*philos;
 	pthread_mutex_t	*forks;
+	long			start_time;
 	int				s;
 }	t_var;
 
@@ -45,5 +47,6 @@ int		*parsing(int ac, char **av);
 long	ft_atoi(const char *str);
 void	free_exit(t_var *v);
 void	*routine(void *arg);
+long	gettime(void);
 
 #endif

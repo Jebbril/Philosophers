@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:51:21 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/10 16:05:23 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/11 18:53:07 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	make_forks(t_var *v)
 	}
 }
 
-void	putdown_forks(t_var *v, int i)
+void	give_forks(t_var *v, int i)
 {
 	v->philos[i].left = v->forks[i];
 	if (i < v->args[0] - 1)
@@ -40,6 +40,7 @@ void	init_philos(t_var *v)
 	int	i;
 
 	i = -1;
+	v->start_time = gettime();
 	v->philos = malloc(sizeof(t_ph) * v->args[0]);
 	if (!v->philos)
 		free_exit(v);
@@ -53,7 +54,8 @@ void	init_philos(t_var *v)
 			v->philos[i].nboftimes_toeat = v->args[4];
 		else
 			v->philos[i].nboftimes_toeat = -1;
-		putdown_forks(v, i);
+		give_forks(v, i);
+		v->philos[i].start_time = v->start_time;
 	}
 }
 
@@ -81,10 +83,7 @@ void	init_threads(t_var *v)
 int	main(int ac, char **av)
 {
 	t_var			v;
-	struct timeval	t1;
 
-	gettimeofday(&t1, NULL);
-	printf("%ld.%d\n", t1.tv_sec, t1.tv_usec);
 	v.forks = NULL;
 	v.philos = NULL;
 	if (ac < 5 || ac > 6)
