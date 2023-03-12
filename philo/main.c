@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:51:21 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/12 17:10:59 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/12 18:24:13 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	make_forks(t_var *v)
 
 void	give_forks(t_var *v, int i)
 {
-	v->philos[i].left = v->forks;
+	v->philos[i].f = v->forks;
 }
 
 void	init_philos(t_var *v)
