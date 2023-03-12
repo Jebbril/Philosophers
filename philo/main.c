@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:51:21 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/12 17:00:48 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/12 17:10:59 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,7 @@ void	make_forks(t_var *v)
 
 void	give_forks(t_var *v, int i)
 {
-	v->philos[i].left = v->forks[i];
-	if (i < v->args[0] - 1)
-		v->philos[i].right = v->forks[i + 1];
-	else
-		v->philos[i].right = v->forks[0];
+	v->philos[i].left = v->forks;
 }
 
 void	init_philos(t_var *v)
@@ -56,6 +52,7 @@ void	init_philos(t_var *v)
 			v->philos[i].nboftimes_toeat = -1;
 		give_forks(v, i);
 		v->philos[i].start_time = v->start_time;
+		v->philos[i].nb_ph = v->args[0];
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:21:30 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/12 17:07:01 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/12 17:10:30 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ typedef struct s_ph
 {
 	int				index;
 	pthread_t		thread;
-	pthread_mutex_t	left;
-	pthread_mutex_t	right;
+	pthread_mutex_t	*left;
 	int				time_todie;
 	int				time_toeat;
 	int				time_tosleep;
 	int				nboftimes_toeat;
 	long			start_time;
+	int				nb_ph;
 }	t_ph;
 
 typedef struct s_var
