@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:21:30 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/12 18:24:05 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/17 18:43:26 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_ph
 	int				time_todie;
 	int				time_toeat;
 	int				time_tosleep;
+	int				last_meal;
+	int				nboftimes_eaten;
 	int				nboftimes_toeat;
 	long			start_time;
 	int				nb_ph;
@@ -48,5 +50,7 @@ long	ft_atoi(const char *str);
 void	free_exit(t_var *v);
 void	*routine(void *arg);
 long	gettime(void);
+void	ft_usleep(long time_in_ms);
+void	monitor(t_var *v);
 
 #endif

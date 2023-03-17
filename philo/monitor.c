@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utlis.c                                            :+:      :+:    :+:   */
+/*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:17:43 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/17 16:20:30 by orakib           ###   ########.fr       */
+/*   Created: 2023/03/17 18:13:57 by orakib            #+#    #+#             */
+/*   Updated: 2023/03/17 20:37:28 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	gettime(void)
+void	monitor(t_var *v)
 {
-	long			time;
-	struct timeval	current;
+	int	i;
 
-	time = 0;
-	gettimeofday(&current, NULL);
-	time = (current.tv_sec * 1000) + (current.tv_usec / 1000);
-	return (time);
-}
-
-void	ft_usleep(long time_in_ms)
-{
-	long	start_time;
-
-	start_time = 0;
-	start_time = gettime();
-	while ((gettime() - start_time) < time_in_ms)
-		usleep(time_in_ms / 10);
+	i = -1;
+	while (1)
+	{
+		while (++i < v->args[0])
+		{
+			if (v->philos[i].nboftimes_eaten > v->philos[i].nboftimes_toeat)
+			{
+				printf("%ld %d died\n", gettime() - v->philos[i].start_time, v->philos[i].index);
+				free_exit(v);
+			}
+		}
+		i = -1;
+	}
 }
