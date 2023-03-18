@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:21:30 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/17 18:43:26 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/18 13:06:42 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_ph
 	int				index;
 	pthread_t		thread;
 	pthread_mutex_t	*f;
+	pthread_mutex_t	printm;
+	pthread_mutex_t	deathm;
 	int				time_todie;
 	int				time_toeat;
 	int				time_tosleep;
@@ -41,6 +43,7 @@ typedef struct s_var
 	int				*args;
 	t_ph			*philos;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	*pdmtx;
 	long			start_time;
 	int				s;
 }	t_var;
@@ -52,5 +55,6 @@ void	*routine(void *arg);
 long	gettime(void);
 void	ft_usleep(long time_in_ms);
 void	monitor(t_var *v);
+void	print_msg(t_ph *p, int type);
 
 #endif

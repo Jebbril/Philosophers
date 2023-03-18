@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:31:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/17 20:23:35 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/18 13:18:17 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,26 @@
 void	p_eat(t_ph *p)
 {
 	pthread_mutex_lock(&p->f[p->index - 1]);
-	printf("%ld %d has taken a fork\n", gettime() - p->start_time, p->index);
+	print_msg(p, 1);
 	pthread_mutex_lock(&p->f[p->index % p->nb_ph]);
-	printf("%ld %d has taken a fork\n", gettime() - p->start_time, p->index);
-	printf("%ld %d is eating\n", gettime() - p->start_time, p->index);
+	print_msg(p, 1);
+	print_msg(p, 2);
 	ft_usleep(p->time_toeat);
 	pthread_mutex_unlock(&p->f[p->index % p->nb_ph]);
 	pthread_mutex_unlock(&p->f[p->index - 1]);
+	p->nboftimes_eaten++;
 }
 
 void	p_sleep(t_ph *p)
 {
-	printf("%ld %d is sleeping\n", gettime() - p->start_time, p->index);
+	print_msg(p, 3);
 	ft_usleep(p->time_tosleep);
 }
 
 void	p_think(t_ph *p)
 {
 	p->last_meal = gettime();
-	printf("%ld %d is thinking\n", gettime() - p->start_time, p->index);
+	print_msg(p, 4);
 }
 
 void	*routine(void *arg)
@@ -48,7 +49,6 @@ void	*routine(void *arg)
 		p_eat(philos);
 		p_sleep(philos);
 		p_think(philos);
-		philos->nboftimes_eaten++;
 	}
 	return (NULL);
 }

@@ -6,7 +6,9 @@
 #    By: orakib <orakib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:21:02 by orakib            #+#    #+#              #
-#    Updated: 2023/02/25 14:21:02 by orakib           ###   ########.fr        #
+#    Updated: 2023/03/18 10:25:57 by orakib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+	
+cc -Wall -Werror -Wextra -pthread -g -fsanitize=thread philo/*.c

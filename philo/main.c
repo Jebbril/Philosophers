@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:51:21 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/17 20:27:21 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/18 13:07:10 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	make_forks(t_var *v)
 	int	i;
 
 	v->forks = malloc(sizeof(pthread_mutex_t) * v->args[0]);
+	if (!v->forks)
+		free_exit(v);
 	i = -1;
 	while (++i < v->args[0])
 	{
@@ -26,9 +28,17 @@ void	make_forks(t_var *v)
 	}
 }
 
-void	give_forks(t_var *v, int i)
+void	pd_mutexes(t_var *v)
 {
-	v->philos[i].f = v->forks;
+	v->pdmtx = malloc(sizeof(pthread_mutex_t) * 2);
+	if (!v->pdmtx)
+		free_exit(v);
+	v->s = pthread_mutex_init(&v->pdmtx[0], NULL);
+	if (v->s != 0)
+		free_exit(v);
+	v->s = pthread_mutex_init(&v->pdmtx[1], NULL);
+	if (v->s != 0)
+		free_exit(v);
 }
 
 void	init_philos(t_var *v)
@@ -36,7 +46,6 @@ void	init_philos(t_var *v)
 	int	i;
 
 	i = -1;
-	v->start_time = gettime();
 	v->philos = malloc(sizeof(t_ph) * v->args[0]);
 	if (!v->philos)
 		free_exit(v);
@@ -52,9 +61,11 @@ void	init_philos(t_var *v)
 			v->philos[i].nboftimes_toeat = -1;
 		v->philos[i].nboftimes_eaten = 0;
 		v->philos[i].last_meal = 0;
-		give_forks(v, i);
+		v->philos[i].f = v->forks;
 		v->philos[i].start_time = v->start_time;
 		v->philos[i].nb_ph = v->args[0];
+		v->philos[i].deathm = v->pdmtx[0];
+		v->philos[i].printm = v->pdmtx[1];
 	}
 }
 
@@ -89,8 +100,10 @@ int	main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	v.args = parsing(ac, av);
 	make_forks(&v);
+	pd_mutexes(&v);
+	v.start_time = gettime();
 	init_philos(&v);
 	init_threads(&v);
 	monitor(&v);
-	// free_exit(&v);
+	free_exit(&v);
 }
