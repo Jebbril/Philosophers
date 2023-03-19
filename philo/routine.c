@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:31:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/18 13:18:17 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/19 12:37:56 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void	p_sleep(t_ph *p)
 
 void	p_think(t_ph *p)
 {
-	p->last_meal = gettime();
 	print_msg(p, 4);
+	pthread_mutex_lock(&p->deathm);
+	p->last_meal = gettime();
+	pthread_mutex_unlock(&p->deathm);
 }
 
 void	*routine(void *arg)
