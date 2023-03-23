@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:13:57 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/23 12:22:04 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/23 12:58:55 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@ void	monitor(t_var *v)
 				print_msg(&v->philos[i], 5);
 				return ;
 			}
-			if (v->philos[i].nboftimes_eaten > v->philos[i].nboftimes_toeat)
-				return ;
 			pthread_mutex_unlock(&v->philos[i].deathm);
+			pthread_mutex_lock(&v->philos[i].fullm);
+			if (v->philos[i].nboftimes_eaten > v->philos[i].nboftimes_toeat
+				&& v->philos[i].nboftimes_toeat != -1)
+				return ;
+			pthread_mutex_unlock(&v->philos[i].fullm);
 		}
 	}
 }

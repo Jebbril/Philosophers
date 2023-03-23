@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:51:21 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/23 12:22:32 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/23 12:52:47 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,16 @@ void	make_forks(t_var *v)
 
 void	pd_mutexes(t_var *v)
 {
-	v->pdmtx = malloc(sizeof(pthread_mutex_t) * 2);
+	v->pdmtx = malloc(sizeof(pthread_mutex_t) * 3);
 	if (!v->pdmtx)
 		free_exit(v);
 	v->s = pthread_mutex_init(&v->pdmtx[0], NULL);
 	if (v->s != 0)
 		free_exit(v);
 	v->s = pthread_mutex_init(&v->pdmtx[1], NULL);
+	if (v->s != 0)
+		free_exit(v);
+	v->s = pthread_mutex_init(&v->pdmtx[2], NULL);
 	if (v->s != 0)
 		free_exit(v);
 }
@@ -66,6 +69,7 @@ void	init_philos(t_var *v)
 		v->philos[i].nb_ph = v->args[0];
 		v->philos[i].deathm = v->pdmtx[0];
 		v->philos[i].printm = v->pdmtx[1];
+		v->philos[i].fullm = v->pdmtx[2];
 	}
 }
 
@@ -105,5 +109,6 @@ int	main(int ac, char **av)
 	init_philos(&v);
 	init_threads(&v);
 	monitor(&v);
-	// free_exit(&v);
+	ft_usleep(1);
+	free_exit(&v);
 }

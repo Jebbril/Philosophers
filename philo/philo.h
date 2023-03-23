@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:21:30 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/23 12:19:22 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/23 12:48:50 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_ph
 	pthread_mutex_t	*f;
 	pthread_mutex_t	printm;
 	pthread_mutex_t	deathm;
+	pthread_mutex_t	fullm;
 	int				time_todie;
 	int				time_toeat;
 	int				time_tosleep;

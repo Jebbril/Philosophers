@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:31:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/23 12:21:39 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/23 12:51:24 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	p_eat(t_ph *p)
 	ft_usleep(p->time_toeat);
 	pthread_mutex_unlock(&p->f[p->index % p->nb_ph]);
 	pthread_mutex_unlock(&p->f[p->index - 1]);
+	pthread_mutex_lock(&p->fullm);
 	p->nboftimes_eaten++;
+	pthread_mutex_unlock(&p->fullm);
 }
 
 void	p_sleep(t_ph *p)
