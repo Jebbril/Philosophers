@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:31:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/19 12:37:56 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/23 12:21:39 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	p_eat(t_ph *p)
 	pthread_mutex_lock(&p->f[p->index % p->nb_ph]);
 	print_msg(p, 1);
 	print_msg(p, 2);
+	pthread_mutex_lock(&p->deathm);
+	p->last_meal = gettime();
+	pthread_mutex_unlock(&p->deathm);
 	ft_usleep(p->time_toeat);
 	pthread_mutex_unlock(&p->f[p->index % p->nb_ph]);
 	pthread_mutex_unlock(&p->f[p->index - 1]);
@@ -34,9 +37,6 @@ void	p_sleep(t_ph *p)
 void	p_think(t_ph *p)
 {
 	print_msg(p, 4);
-	pthread_mutex_lock(&p->deathm);
-	p->last_meal = gettime();
-	pthread_mutex_unlock(&p->deathm);
 }
 
 void	*routine(void *arg)
@@ -45,7 +45,7 @@ void	*routine(void *arg)
 
 	philos = arg;
 	if (philos->index % 2 != 0)
-		ft_usleep(5);
+		ft_usleep(1);
 	while (1)
 	{
 		p_eat(philos);

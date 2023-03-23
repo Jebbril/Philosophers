@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 09:55:22 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/18 11:06:41 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/23 09:38:40 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ void	print_msg(t_ph *p, int type)
 		printf("%ld %d is sleeping\n", gettime() - p->start_time, p->index);
 	else if (type == 4)
 		printf("%ld %d is thinking\n", gettime() - p->start_time, p->index);
+	else if (type == 5)
+		printf("%ld %d died\n", gettime() - p->start_time, p->index);
 	pthread_mutex_unlock(&p->printm);
 }

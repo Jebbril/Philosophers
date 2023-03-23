@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 14:21:30 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/18 13:06:42 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/23 12:19:22 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_ph
 	int				time_todie;
 	int				time_toeat;
 	int				time_tosleep;
-	int				last_meal;
+	long			last_meal;
 	int				nboftimes_eaten;
 	int				nboftimes_toeat;
 	long			start_time;

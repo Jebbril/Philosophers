@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:51:21 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/18 13:07:10 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/23 12:22:32 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	init_philos(t_var *v)
 		else
 			v->philos[i].nboftimes_toeat = -1;
 		v->philos[i].nboftimes_eaten = 0;
-		v->philos[i].last_meal = 0;
+		v->philos[i].last_meal = gettime();
 		v->philos[i].f = v->forks;
 		v->philos[i].start_time = v->start_time;
 		v->philos[i].nb_ph = v->args[0];
@@ -105,5 +105,5 @@ int	main(int ac, char **av)
 	init_philos(&v);
 	init_threads(&v);
 	monitor(&v);
-	free_exit(&v);
+	// free_exit(&v);
 }
