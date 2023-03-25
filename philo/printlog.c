@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 09:55:22 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/23 13:27:20 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/25 12:59:56 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_msg(t_ph *p, int type)
 {
-	pthread_mutex_lock(&p->printm);
+	pthread_mutex_lock(p->printm);
 	if (type == 1)
 		printf("%ld %d has taken a fork\n", gettime() - p->start_time, p->index);
 	else if (type == 2)
@@ -24,6 +24,9 @@ void	print_msg(t_ph *p, int type)
 	else if (type == 4)
 		printf("%ld %d is thinking\n", gettime() - p->start_time, p->index);
 	else if (type == 5)
+	{
 		printf("%ld %d died\n", gettime() - p->start_time, p->index);
-	pthread_mutex_unlock(&p->printm);
+		return ;
+	}
+	pthread_mutex_unlock(p->printm);
 }

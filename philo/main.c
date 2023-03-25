@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:51:21 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/23 12:52:47 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/25 12:02:33 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	init_philos(t_var *v)
 		v->philos[i].f = v->forks;
 		v->philos[i].start_time = v->start_time;
 		v->philos[i].nb_ph = v->args[0];
-		v->philos[i].deathm = v->pdmtx[0];
-		v->philos[i].printm = v->pdmtx[1];
-		v->philos[i].fullm = v->pdmtx[2];
+		v->philos[i].deathm = &v->pdmtx[0];
+		v->philos[i].printm = &v->pdmtx[1];
+		v->philos[i].fullm = &v->pdmtx[2];
 	}
 }
 

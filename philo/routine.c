@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:31:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/23 12:51:24 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/25 14:00:57 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void	p_eat(t_ph *p)
 	print_msg(p, 1);
 	pthread_mutex_lock(&p->f[p->index % p->nb_ph]);
 	print_msg(p, 1);
-	print_msg(p, 2);
-	pthread_mutex_lock(&p->deathm);
+	pthread_mutex_lock(p->deathm);
 	p->last_meal = gettime();
-	pthread_mutex_unlock(&p->deathm);
+	pthread_mutex_unlock(p->deathm);
+	print_msg(p, 2);
 	ft_usleep(p->time_toeat);
 	pthread_mutex_unlock(&p->f[p->index % p->nb_ph]);
 	pthread_mutex_unlock(&p->f[p->index - 1]);
-	pthread_mutex_lock(&p->fullm);
+	pthread_mutex_lock(p->fullm);
 	p->nboftimes_eaten++;
-	pthread_mutex_unlock(&p->fullm);
+	pthread_mutex_unlock(p->fullm);
 }
 
 void	p_sleep(t_ph *p)

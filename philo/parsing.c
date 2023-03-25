@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 15:57:33 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/06 13:00:43 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/25 13:06:21 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int	*parsing(int ac, char **av)
 	}
 	while (++i < (ac - 1))
 	{
-		if (ft_atoi(av[i + 1]) > 2147483647)
+		if (ft_atoi(av[i + 1]) > 2147483647
+			|| ft_atoi(av[i + 1]) == 0 || !av[i + 1][0])
 		{
 			free(ret);
 			exit(EXIT_FAILURE);
