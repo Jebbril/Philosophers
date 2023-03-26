@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_bonus.h                                      :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 13:07:36 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/26 12:11:54 by orakib           ###   ########.fr       */
+/*   Created: 2023/03/26 12:10:31 by orakib            #+#    #+#             */
+/*   Updated: 2023/03/26 12:10:45 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_BONUS_H
+#include "philo_bonus.h"
 
-# define PHILO_BONUS_H
+long	gettime(void)
+{
+	long			time;
+	struct timeval	current;
 
-# include "sys/time.h"
-# include "pthread.h"
-# include "stdlib.h"
-# include "stdio.h"
-# include "string.h"
-# include "unistd.h"
+	time = 0;
+	gettimeofday(&current, NULL);
+	time = (current.tv_sec * 1000) + (current.tv_usec / 1000);
+	return (time);
+}
 
-long	gettime(void);
-void	ft_usleep(long time_in_ms);
+void	ft_usleep(long time_in_ms)
+{
+	long	start_time;
 
-#endif
+	start_time = 0;
+	start_time = gettime();
+	while ((gettime() - start_time) < time_in_ms)
+		usleep(time_in_ms / 10);
+}

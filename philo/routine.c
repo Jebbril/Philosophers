@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 14:31:54 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/25 14:00:57 by orakib           ###   ########.fr       */
+/*   Updated: 2023/03/26 11:58:04 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	*routine(void *arg)
 	t_ph	*philos;
 
 	philos = arg;
-	if (philos->index % 2 != 0)
-		ft_usleep(1);
+	if (philos->index % 2 == 0)
+		ft_usleep(5);
 	while (1)
 	{
 		p_eat(philos);
