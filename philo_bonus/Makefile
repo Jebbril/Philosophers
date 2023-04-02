@@ -6,21 +6,21 @@
 #    By: orakib <orakib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:21:02 by orakib            #+#    #+#              #
-#    Updated: 2023/04/02 13:49:05 by orakib           ###   ########.fr        #
+#    Updated: 2023/04/02 13:49:29 by orakib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 	
-NAME = philo
+NAME = philo_bonus
 
-SRC = ft_atoi.c garbage.c main.c monitor.c parsing.c \
-		printlog.c utils.c routine.c
+SRC = ft_atoi_bonus.c main_bonus.c monitor_bonus.c parsing_bonus.c \
+		utils_bonus.c routine_bonus.c
 
-HEADER = philo.h
+HEADER = philo_bonus.h
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -pthread #-fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra -pthread -fsanitize=thread
 
 OBJ = $(SRC:.c=.o)
 
