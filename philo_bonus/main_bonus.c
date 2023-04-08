@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 13:08:12 by jebril            #+#    #+#             */
-/*   Updated: 2023/04/02 13:46:53 by orakib           ###   ########.fr       */
+/*   Updated: 2023/04/06 09:38:04 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,11 @@ void	init_semaphores(t_var *v)
 	sem_unlink("forks");
 	sem_unlink("print");
 	sem_unlink("end");
-	sem_unlink("enough_meals");
 	sem_unlink("death");
 	v->forks = sem_open("forks", O_CREAT | O_EXCL, 0777, v->nb_philo);
 	v->print = sem_open("print", O_CREAT | O_EXCL, 0777, 1);
 	v->end = sem_open("end", O_CREAT | O_EXCL, 0777, 0);
 	v->death = sem_open("death", O_CREAT | O_EXCL, 0777, 1);
-	if (v->nb_timetoeat != -1)
-		v->enough_meals = sem_open("enough_meals", O_CREAT | O_EXCL, 0777, 1);
 }
 
 void	init_args(t_var *v)
@@ -81,11 +78,11 @@ void	init_args(t_var *v)
 	if (!v->philo_pid)
 		exit(EXIT_FAILURE);
 }
-// void	leaks(){system("leaks a.out");}
+
 int	main(int ac, char **av)
 {
 	t_var	v;
-// atexit(leaks);
+
 	if (ac < 5 || ac > 6)
 		exit(EXIT_FAILURE);
 	v.args = parsing(ac, av);

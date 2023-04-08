@@ -6,7 +6,7 @@
 #    By: orakib <orakib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 14:21:02 by orakib            #+#    #+#              #
-#    Updated: 2023/04/02 13:49:29 by orakib           ###   ########.fr        #
+#    Updated: 2023/04/08 04:22:19 by orakib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ HEADER = philo_bonus.h
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -pthread -fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra -pthread #-fsanitize=thread
 
 OBJ = $(SRC:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jebril <jebril@student.42.fr>              +#+  +:+       +#+        */
+/*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 12:10:31 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/28 14:27:00 by jebril           ###   ########.fr       */
+/*   Updated: 2023/04/08 04:35:22 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	ft_usleep(long time_in_ms)
 	start_time = 0;
 	start_time = gettime();
 	while ((gettime() - start_time) < time_in_ms)
-		usleep(time_in_ms / 10);
+		usleep(100);
 }

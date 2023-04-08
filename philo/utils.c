@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:17:43 by orakib            #+#    #+#             */
-/*   Updated: 2023/03/23 13:15:30 by orakib           ###   ########.fr       */
+/*   Updated: 2023/04/08 04:26:04 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	ft_usleep(long time_in_ms)
 	start_time = 0;
 	start_time = gettime();
 	while ((gettime() - start_time) < time_in_ms)
-		usleep(time_in_ms / 10);
+		usleep(100);
 }

@@ -6,7 +6,7 @@
 /*   By: orakib <orakib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 12:23:10 by orakib            #+#    #+#             */
-/*   Updated: 2023/04/02 13:32:11 by orakib           ###   ########.fr       */
+/*   Updated: 2023/04/08 04:35:33 by orakib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,17 @@ void	*ft_monitor(void *param)
 	v = param;
 	while (1)
 	{
+		usleep(200);
 		sem_wait(v->death);
+		printf("");
 		if (gettime() - v->last_meal > v->time_todie)
 		{
 			sem_wait(v->print);
 			printf("%ld %d died\n", gettime() - v->start_time, v->philo_ind);
 			sem_post(v->end);
 		}
+		printf("");
 		sem_post(v->death);
-		sem_wait(v->enough_meals);
-		if (v->nb_timeeaten > v->nb_timetoeat && v->nb_timetoeat != -1)
-		{
-			sem_wait(v->print);
-			sem_post(v->end);
-		}
-		sem_post(v->enough_meals);
 	}
 	return (NULL);
 }
